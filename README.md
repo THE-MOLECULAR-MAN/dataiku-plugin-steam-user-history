@@ -4,6 +4,13 @@ This plugin utilizes Steam's RESTful API to gather the recent gaming history of 
 
 Since Steam doesn't expose specific gaming sessions, you can use this plugin to infer how much time a user is spending per day or week for individual games. Steam doesn't expose very much information about an individual's gaming history through their API, so this code relies on the IPlayerService/GetRecentlyPlayedGames API endpoint to gather information.
 
+# Screenshots
+Example of this plugin's connector for public steam account, not mine:
+![Testing the schema](screenshot-results.png)
+
+Example of this plugin's connector in a flow:
+![Testing the schema](screenshot-flow.png)
+
 # Instructions
 This plugin was designed and tested on Dataiku DSS v13.2.2. A Steam API key is required.
 
