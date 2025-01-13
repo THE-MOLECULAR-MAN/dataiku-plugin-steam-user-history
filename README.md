@@ -5,11 +5,11 @@ This plugin utilizes Steam's RESTful API to gather the recent gaming history of 
 Since Steam doesn't expose specific gaming sessions, you can use this plugin to infer how much time a user is spending per day or week for individual games. Steam doesn't expose very much information about an individual's gaming history through their API, so this code relies on the IPlayerService/GetRecentlyPlayedGames API endpoint to gather information.
 
 # Instructions
-This plugin was designed and tested on Dataiku DSS v13.2.2. Steam API keys are required to access your own Steam account if it is set to private.
+This plugin was designed and tested on Dataiku DSS v13.2.2. A Steam API key is required.
 
 1) Install the plugin in DSS via link in GitHub: Add Plugin, Fetch from Git Repository: ```git@github.com:THE-MOLECULAR-MAN/dataiku-plugin-steam-user-history.git```
 2) Click Clone
-3) Recommended: Get your Steam API key from Steam's site: https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey
+3) Mandatory: Get your Steam API key from Steam's site: https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey
 4) In Dataiku DSS, create a new project or open an existing project. Edit the Porject's local variables and add a new one with the format:
 ```
 {
