@@ -95,6 +95,10 @@ class MyConnector(Connector):
         
         STEAM_FQDN       = 'api.steampowered.com'
         url = f"https://{STEAM_FQDN}/IPlayerService/GetRecentlyPlayedGames/v1/"
+        headers = {
+            'x-webapi-key': self.steam_api_key
+        }
+
         
         for iter_steam_user_id in self.steam_user_ids_list:
             if iter_steam_user_id is None:
@@ -104,9 +108,6 @@ class MyConnector(Connector):
             params_steam = {
                 'steamid': iter_steam_user_id,
                 'count': 99
-            }
-            headers = {
-                'x-webapi-key': self.steam_api_key
             }
 
             timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
