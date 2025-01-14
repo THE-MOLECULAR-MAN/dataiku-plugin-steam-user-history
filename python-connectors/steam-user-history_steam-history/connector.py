@@ -94,6 +94,7 @@ class MyConnector(Connector):
         # "The optional user-generated API key for accessing this user's data. Only required if the user's history is set to private. Ex: 0123445B0CD8D8DB92425FFFFFFFFFFF",
         
         STEAM_FQDN       = 'api.steampowered.com'
+        url = f"https://{STEAM_FQDN}/IPlayerService/GetRecentlyPlayedGames/v1/"
         
         for iter_steam_user_id in self.steam_user_ids_list:
             if iter_steam_user_id is None:
@@ -103,7 +104,7 @@ class MyConnector(Connector):
             # things to investigate for future implementation:
             # https://partner.steamgames.com/doc/webapi/iplayerservice
 
-            url = f"https://{STEAM_FQDN}/IPlayerService/GetRecentlyPlayedGames/v1/"
+            
             params_steam = {
                 'steamid': iter_steam_user_id,
                 'count': 99
