@@ -31,7 +31,7 @@
     "params": [
         {
             "name": "steam_user_id",
-            "label": "The Steam User IDs",
+            "label": "List of Steam User IDs",
             "type": "STRINGS",
             "description": "Array of User IDs",
             "mandatory": true,
