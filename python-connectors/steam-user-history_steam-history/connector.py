@@ -99,7 +99,6 @@ class MyConnector(Connector):
             'x-webapi-key': self.steam_api_key
         }
         
-        # result = []
         timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
         
         for iter_steam_user_id in list(set(self.steam_user_ids_list)):
