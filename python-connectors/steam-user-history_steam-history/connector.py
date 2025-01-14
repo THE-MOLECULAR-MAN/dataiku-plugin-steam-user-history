@@ -117,15 +117,15 @@ class MyConnector(Connector):
 
             if response.status_code == 200:
                 try:
-                data = response.json()['response']['games']
-                for game in data:
-                    yield { "timestamp" :       timestamp_request,
-                            "steam_user_id" :   str(iter_steam_user_id),
-                            "app_id":           game['appid'],
-                            "game_name":        game['name'],
-                            "playtime_2weeks_in_minutes":   int(game['playtime_2weeks']),
-                            "playtime_all_time_in_minutes": int(game['playtime_forever'])
-                          }
+                    data = response.json()['response']['games']
+                    for game in data:
+                        yield { "timestamp" :       timestamp_request,
+                                "steam_user_id" :   str(iter_steam_user_id),
+                                "app_id":           game['appid'],
+                                "game_name":        game['name'],
+                                "playtime_2weeks_in_minutes":   int(game['playtime_2weeks']),
+                                "playtime_all_time_in_minutes": int(game['playtime_forever'])
+                              }
                 except KeyError:
                     logger.info(f"steam-user-history_steam-history plugin - {iter_steam_user_id} has no recent game history")
                     continue
