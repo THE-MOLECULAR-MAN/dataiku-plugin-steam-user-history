@@ -101,7 +101,7 @@ class MyConnector(Connector):
         
         # result = []
         
-        for iter_steam_user_id in self.steam_user_ids_list:
+        for iter_steam_user_id in list(set(self.steam_user_ids_list)):
             logger.info(f"steam-user-history_steam-history plugin - start of loop. iter_steam_user_id={iter_steam_user_id}")
             if iter_steam_user_id is None:
                 continue
