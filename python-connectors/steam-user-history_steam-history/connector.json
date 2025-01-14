@@ -2,7 +2,7 @@
 {
     "meta" : {
         // label: name of the dataset type as displayed, should be short
-        "label": "Recent Steam User History (2-weeks)",
+        "label": "Recent Steam Users History (2-weeks)",
 
         // description: longer string to help end users understand what this dataset type is
         "description": "The last 2 weeks gaming history of a single Steam user",
