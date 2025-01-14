@@ -99,7 +99,7 @@ class MyConnector(Connector):
             'x-webapi-key': self.steam_api_key
         }
         
-        result = {}
+        result = []
         
         for iter_steam_user_id in self.steam_user_ids_list:
             if iter_steam_user_id is None:
