@@ -100,7 +100,6 @@ class MyConnector(Connector):
         }
         
         result = {}
-
         
         for iter_steam_user_id in self.steam_user_ids_list:
             if iter_steam_user_id is None:
