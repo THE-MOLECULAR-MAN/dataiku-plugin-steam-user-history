@@ -35,7 +35,7 @@
             "type": "STRINGS",
             "description": "List of Steam User IDs",
             "mandatory": true,
-            "defaultValue": ["76561197960287930", "76561198842603734"]
+            "defaultValue": ["76561197984432884", "76561198212206651", "76561198089412043"]
         }
     ]
 }
