@@ -105,11 +105,11 @@ class MyConnector(Connector):
 
             url = f"https://{STEAM_FQDN}/IPlayerService/GetRecentlyPlayedGames/v1/"
             params_steam = {
-                'steamid': STEAM_USERID,
+                'steamid': iter_steam_user_id,
                 'count': 99
             }
             headers = {
-                'x-webapi-key': STEAM_API_KEY
+                'x-webapi-key': self.steam_api_key
             }
 
             timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
@@ -121,7 +121,7 @@ class MyConnector(Connector):
                 data = response.json()['response']['games']
                 for game in data:
                     yield { "timestamp" :       timestamp_request, 
-                            "steam_user_id" :   str(STEAM_USERID),
+                            "steam_user_id" :   str(iter_steam_user_id),
                             "app_id":           game['appid'],
                             "game_name":        game['name'],
                             "playtime_2weeks_in_minutes":   int(game['playtime_2weeks']),
