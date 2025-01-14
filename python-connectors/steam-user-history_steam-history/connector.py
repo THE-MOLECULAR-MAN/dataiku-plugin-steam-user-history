@@ -100,6 +100,7 @@ class MyConnector(Connector):
         }
         
         # result = []
+        timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
         
         for iter_steam_user_id in list(set(self.steam_user_ids_list)):
             logger.info(f"steam-user-history_steam-history plugin - start of loop. iter_steam_user_id={iter_steam_user_id}")
@@ -111,7 +112,7 @@ class MyConnector(Connector):
                 'count': 99
             }
 
-            timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
+
             time.sleep(2) # sleep to avoid too many requests
             response = requests.get(url, headers=headers, params=params_steam)
 
