@@ -31,11 +31,11 @@
     "params": [
         {
             "name": "steam_user_id",
-            "label": "The Steam User ID",
-            "type": "STRING",
-            "description": "User ID to gather info about - ex: 76561198842603734. Not the Steam handle/username",
+            "label": "The Steam User IDs",
+            "type": "ARRAY",
+            "description": "Array of User IDs",
             "mandatory": true,
-            "defaultValue": "76561198842603734"
+            "defaultValue": ""
         }
     ]
 }
