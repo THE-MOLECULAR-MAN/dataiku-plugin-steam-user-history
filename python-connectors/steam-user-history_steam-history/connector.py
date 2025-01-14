@@ -114,6 +114,7 @@ class MyConnector(Connector):
             response = requests.get(url, headers=headers, params=params_steam)
 
             if response.status_code == 200:
+                try:
                 data = response.json()['response']['games']
                 for game in data:
                     yield { "timestamp" :       timestamp_request,
@@ -123,6 +124,9 @@ class MyConnector(Connector):
                             "playtime_2weeks_in_minutes":   int(game['playtime_2weeks']),
                             "playtime_all_time_in_minutes": int(game['playtime_forever'])
                           }
+                except KeyError:
+                    logger.info(f"steam-user-history_steam-history plugin - {iter_steam_user_id} has no recent game history")
+                    continue
             else:
                 logger.info("steam-user-history_steam-history plugin - API call failed")
                 logger.error(f"steam-user-history_steam-history plugin - Error: {response.status_code}, {response.text}")
