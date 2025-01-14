@@ -32,7 +32,7 @@
         {
             "name": "steam_user_id",
             "label": "The Steam User IDs",
-            "type": "ARRAY",
+            "type": "STRINGS",
             "description": "Array of User IDs",
             "mandatory": true,
             "defaultValue": ""
