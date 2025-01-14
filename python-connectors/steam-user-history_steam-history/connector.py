@@ -83,7 +83,6 @@ class MyConnector(Connector):
         """
         logger.info('steam-user-history_steam-history plugin - Fetching STEAM_API_KEY from local project variables')
         
-        
         if self.steam_api_key is not None:
             logger.info("steam-user-history_steam-history plugin - Successfully got API key")
         else:
