@@ -114,8 +114,6 @@ class MyConnector(Connector):
             response = requests.get(url, headers=headers, params=params_steam)
 
             if response.status_code == 200:
-
-                
                 data = response.json()['response']['games']
                 for game in data:
                     yield { "timestamp" :       timestamp_request, 
