@@ -103,7 +103,6 @@ class MyConnector(Connector):
         
         for iter_steam_user_id in self.steam_user_ids_list:
             if iter_steam_user_id is None:
-                logger.error("steam-user-history_steam-history plugin - No Steam User ID provided. Exiting.")
                 continue
             
             params_steam = {
