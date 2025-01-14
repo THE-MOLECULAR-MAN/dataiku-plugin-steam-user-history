@@ -1,8 +1,18 @@
 # This file is the actual code for the custom Python dataset steam-user-history_steam-users-achievements
 
 # import the base class for the custom dataset
+import requests
+import time
+import pytz
+from datetime import datetime
 from six.moves import xrange
 from dataiku.connector import Connector
+import dataiku
+
+import logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO,
+                    format='steam-user-history_steam-history plugin %(levelname)s - %(message)s')
 
 """
 A custom Python dataset is a subclass of Connector.
