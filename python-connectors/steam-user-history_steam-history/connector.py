@@ -116,7 +116,7 @@ class MyConnector(Connector):
             if response.status_code == 200:
                 data = response.json()['response']['games']
                 for game in data:
-                    yield { "timestamp" :       timestamp_request, 
+                    yield { "timestamp" :       timestamp_request,
                             "steam_user_id" :   str(iter_steam_user_id),
                             "app_id":           game['appid'],
                             "game_name":        game['name'],
