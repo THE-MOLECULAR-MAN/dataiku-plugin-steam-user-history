@@ -126,7 +126,7 @@ class MyConnector(Connector):
             else:
                 logger.info("steam-user-history_steam-history plugin - API call failed")
                 logger.error(f"steam-user-history_steam-history plugin - Error: {response.status_code}, {response.text}")
-                return None
+                continue
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
                          partition_id=None, write_mode="OVERWRITE"):
