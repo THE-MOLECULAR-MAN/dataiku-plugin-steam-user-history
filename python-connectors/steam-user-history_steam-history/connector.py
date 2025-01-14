@@ -35,7 +35,8 @@ class MyConnector(Connector):
 
         # perform some more initialization
         logger.info('steam-user-history_steam-history plugin - Fetching steam user ID')
-        self.steam_user_id = self.config.get("steam_user_id", "defaultValue")
+        self.steam_user_ids_list = self.config.get("steam_user_ids_list", "defaultValue")
+        self.steam_api_key       = dataiku.get_custom_variables()["STEAM_API_KEY"]
 
 
     def get_read_schema(self):
@@ -82,7 +83,7 @@ class MyConnector(Connector):
         """
         logger.info('steam-user-history_steam-history plugin - Fetching STEAM_API_KEY from local project variables')
         
-        STEAM_API_KEY = dataiku.get_custom_variables()["STEAM_API_KEY"]
+        
         if STEAM_API_KEY is not None:
             logger.info("steam-user-history_steam-history plugin - Successfully got API key")
         else:
