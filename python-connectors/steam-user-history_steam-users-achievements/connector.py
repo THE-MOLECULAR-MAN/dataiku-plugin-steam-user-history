@@ -12,7 +12,7 @@ import dataiku
 import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO,
-                    format='steam-user-history_steam-history plugin %(levelname)s - %(message)s')
+                    format='steam-achievements plugin %(levelname)s - %(message)s')
 
 """
 A custom Python dataset is a subclass of Connector.
