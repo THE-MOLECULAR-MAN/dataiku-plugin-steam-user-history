@@ -18,7 +18,6 @@
     /* Can this connector append data instead of overwriting it ? */
     "supportAppend": false,
 
-
     /* params:
     DSS will generate a formular from this list of requested parameters.
     Your component code can then access the value provided by users using the "name" field of each parameter.
@@ -33,7 +32,7 @@
             "name": "steam_user_ids_list",
             "label": "List of Steam User IDs",
             "type": "STRINGS",
-            "description": "List of Steam User IDs",
+            "description": "Ex: 76561198089412043, not a Steam user name",
             "mandatory": true,
             "defaultValue": ["76561197984432884", "76561198212206651", "76561198089412043"]
         }
