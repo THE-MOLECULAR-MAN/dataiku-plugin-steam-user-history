@@ -35,7 +35,7 @@
             "type": "STRINGS",
             "description": "Array of User IDs",
             "mandatory": true,
-            "defaultValue": ["76561197960287930"]
+            "defaultValue": ["76561197960287930", "76561198842603734"]
         }
     ]
 }
