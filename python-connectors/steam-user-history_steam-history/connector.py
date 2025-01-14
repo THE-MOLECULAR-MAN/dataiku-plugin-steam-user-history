@@ -112,7 +112,6 @@ class MyConnector(Connector):
                 'count': 99
             }
 
-
             time.sleep(2) # sleep to avoid too many requests
             response = requests.get(url, headers=headers, params=params_steam)
 
