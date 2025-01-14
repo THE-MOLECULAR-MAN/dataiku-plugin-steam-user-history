@@ -2,6 +2,7 @@
 
 # import the base class for the custom dataset
 import requests
+import time
 import pytz
 from datetime import datetime
 from six.moves import xrange
@@ -111,6 +112,7 @@ class MyConnector(Connector):
             }
 
             timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
+            time.sleep()
             response = requests.get(url, headers=headers, params=params_steam)
 
             if response.status_code == 200:
