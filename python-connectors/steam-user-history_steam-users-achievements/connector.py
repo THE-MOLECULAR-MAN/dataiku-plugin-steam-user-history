@@ -59,7 +59,14 @@ class MyConnector(Connector):
 
         # In this example, we don't specify a schema here, so DSS will infer the schema
         # from the columns actually returned by the generate_rows method
-        return None
+        return {"columns" : [
+            {"name": "timestamp",     "type" : "date"}, 
+            {"name" :"steam_user_id", "type" : "bigint"},
+            {"name" :"app_id",        "type" : "bigint"},
+            {"name" :"game_name",     "type" : "string"},
+            {"name" :"playtime_2weeks_in_minutes",       "type" : "bigint"},
+            {"name" :"playtime_all_time_in_minutes",     "type" : "bigint"},
+        ]}
 
     def generate_rows(self, dataset_schema=None, dataset_partitioning=None,
                             partition_id=None, records_limit = -1):
