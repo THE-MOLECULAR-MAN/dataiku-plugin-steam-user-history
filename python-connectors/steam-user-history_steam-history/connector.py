@@ -100,10 +100,6 @@ class MyConnector(Connector):
             if iter_steam_user_id is None:
                 logger.error("steam-user-history_steam-history plugin - No Steam User ID provided. Exiting.")
                 return None
-
-            # things to investigate for future implementation:
-            # https://partner.steamgames.com/doc/webapi/iplayerservice
-
             
             params_steam = {
                 'steamid': iter_steam_user_id,
