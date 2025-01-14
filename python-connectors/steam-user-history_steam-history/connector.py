@@ -112,7 +112,7 @@ class MyConnector(Connector):
             }
 
             timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
-            time.sleep(2)
+            time.sleep(2) # sleep to avoid too many requests
             response = requests.get(url, headers=headers, params=params_steam)
 
             if response.status_code == 200:
