@@ -2,6 +2,7 @@
 
 # import the base class for the custom dataset
 import requests
+import time
 import pytz
 from datetime import datetime
 from six.moves import xrange
@@ -35,7 +36,8 @@ class MyConnector(Connector):
 
         # perform some more initialization
         logger.info('steam-user-history_steam-history plugin - Fetching steam user ID')
-        self.steam_user_id = self.config.get("steam_user_id", "defaultValue")
+        self.steam_user_ids_list = self.config.get("steam_user_ids_list", "defaultValue")
+        self.steam_api_key       = dataiku.get_custom_variables()["STEAM_API_KEY"]
 
 
     def get_read_schema(self):
@@ -82,8 +84,7 @@ class MyConnector(Connector):
         """
         logger.info('steam-user-history_steam-history plugin - Fetching STEAM_API_KEY from local project variables')
         
-        STEAM_API_KEY = dataiku.get_custom_variables()["STEAM_API_KEY"]
-        if STEAM_API_KEY is not None:
+        if self.steam_api_key is not None:
             logger.info("steam-user-history_steam-history plugin - Successfully got API key")
         else:
             logger.error("steam-user-history_steam-history plugin - FAILED TO GET STEAM API KEY FROM LOCAL PROJECT VARIABLES")
@@ -93,43 +94,44 @@ class MyConnector(Connector):
         # "The optional user-generated API key for accessing this user's data. Only required if the user's history is set to private. Ex: 0123445B0CD8D8DB92425FFFFFFFFFFF",
         
         STEAM_FQDN       = 'api.steampowered.com'
-        STEAM_USERID     = self.steam_user_id
-        
-        if STEAM_USERID is None:
-            logger.error("steam-user-history_steam-history plugin - No Steam User ID provided. Exiting.")
-            return None
-        
-        # things to investigate for future implementation:
-        # https://partner.steamgames.com/doc/webapi/iplayerservice
-
         url = f"https://{STEAM_FQDN}/IPlayerService/GetRecentlyPlayedGames/v1/"
-        params_steam = {
-            'steamid': STEAM_USERID,
-            'count': 99
-        }
         headers = {
-            'x-webapi-key': STEAM_API_KEY
+            'x-webapi-key': self.steam_api_key
         }
-
+        
         timestamp_request = datetime.now(pytz.timezone('US/Eastern')).isoformat()
-        response = requests.get(url, headers=headers, params=params_steam)
+        
+        for iter_steam_user_id in list(set(self.steam_user_ids_list)):
+            logger.info(f"steam-user-history_steam-history plugin - start of loop. iter_steam_user_id={iter_steam_user_id}")
+            if iter_steam_user_id is None:
+                continue
+            
+            params_steam = {
+                'steamid': iter_steam_user_id,
+                'count': 99
+            }
 
-        if response.status_code == 200:
-            #print(f"API call success. HTTP code was 200.")
-            # print(response.text)
-            data = response.json()['response']['games']
-            for game in data:
-                yield { "timestamp" :       timestamp_request, 
-                        "steam_user_id" :   str(STEAM_USERID),
-                        "app_id":           game['appid'],
-                        "game_name":        game['name'],
-                        "playtime_2weeks_in_minutes":   int(game['playtime_2weeks']),
-                        "playtime_all_time_in_minutes": int(game['playtime_forever'])
-                      }
-        else:
-            logger.info("steam-user-history_steam-history plugin - API call failed")
-            logger.error(f"steam-user-history_steam-history plugin - Error: {response.status_code}, {response.text}")
-            return None
+            time.sleep(2) # sleep to avoid too many requests
+            response = requests.get(url, headers=headers, params=params_steam)
+
+            if response.status_code == 200:
+                try:
+                    data = response.json()['response']['games']
+                    for game in data:
+                        yield { "timestamp" :       timestamp_request,
+                                "steam_user_id" :   str(iter_steam_user_id),
+                                "app_id":           game['appid'],
+                                "game_name":        game['name'],
+                                "playtime_2weeks_in_minutes":   int(game['playtime_2weeks']),
+                                "playtime_all_time_in_minutes": int(game['playtime_forever'])
+                              }
+                except KeyError:
+                    logger.info(f"steam-user-history_steam-history plugin - {iter_steam_user_id} has no recent game history")
+                    continue
+            else:
+                logger.info("steam-user-history_steam-history plugin - API call failed")
+                logger.error(f"steam-user-history_steam-history plugin - Error: {response.status_code}, {response.text}")
+                continue
 
     def get_writer(self, dataset_schema=None, dataset_partitioning=None,
                          partition_id=None, write_mode="OVERWRITE"):

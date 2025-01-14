@@ -2,10 +2,10 @@
 {
     "meta" : {
         // label: name of the dataset type as displayed, should be short
-        "label": "Recent Steam User History (2-weeks)",
+        "label": "Recent Steam Gaming History - Users (2-weeks)",
 
         // description: longer string to help end users understand what this dataset type is
-        "description": "The last 2 weeks gaming history of a single Steam user",
+        "description": "Gathers the last 2 weeks gaming history of one or more Steam users",
 
         // icon: must be one of the FontAwesome 5.15.4 icons, complete list here at https://fontawesome.com/v5/docs/
         "icon": "fas fa-gamepad"
@@ -18,7 +18,6 @@
     /* Can this connector append data instead of overwriting it ? */
     "supportAppend": false,
 
-
     /* params:
     DSS will generate a formular from this list of requested parameters.
     Your component code can then access the value provided by users using the "name" field of each parameter.
@@ -30,12 +29,12 @@
     */
     "params": [
         {
-            "name": "steam_user_id",
-            "label": "The Steam User ID",
-            "type": "STRING",
-            "description": "User ID to gather info about - ex: 76561198842603734. Not the Steam handle/username",
+            "name": "steam_user_ids_list",
+            "label": "List of Steam User IDs",
+            "type": "STRINGS",
+            "description": "Ex: 76561198089412043, not a Steam user name",
             "mandatory": true,
-            "defaultValue": "76561198842603734"
+            "defaultValue": ["76561197984432884", "76561198212206651", "76561198089412043"]
         }
     ]
 }
