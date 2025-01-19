@@ -75,7 +75,8 @@ class MyConnector(Connector):
             {"name" :"steam_user_id", "type" : "bigint"},
             {"name" :"game_name",     "type" : "string"},
             {"name" :"apiname",       "type" : "string"},
-            {"name" :"apiname",       "type" : "string"},
+            {"name" :"unlocktime",    "type" : "string"},
+            {"name" :"achieved",      "type" : "string"},
         ]}
 
     def generate_rows(self, dataset_schema=None, dataset_partitioning=None,
