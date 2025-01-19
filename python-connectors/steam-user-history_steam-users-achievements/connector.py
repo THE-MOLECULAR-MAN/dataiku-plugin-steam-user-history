@@ -15,6 +15,9 @@ logging.basicConfig(level=logging.INFO,
                     format='steam-achievements plugin %(levelname)s - %(message)s')
 
 import steam
+from steam.webapi import WebAPI
+api = WebAPI(key="<your api key>")
+
 
 """
 A custom Python dataset is a subclass of Connector.
