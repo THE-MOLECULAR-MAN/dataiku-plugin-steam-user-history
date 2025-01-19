@@ -43,7 +43,8 @@ class MyConnector(Connector):
         Connector.__init__(self, config, plugin_config)  # pass the parameters to the base class
 
         # perform some more initialization
-        self.theparam1 = self.config.get("parameter1", "defaultValue")
+        logger.info('steam-user-history_steam-history plugin - Fetching steam user ID')
+        self.steam_user_ids_list = self.config.get("steam_user_ids_list", "defaultValue")
         self.steam_api_key       = dataiku.get_custom_variables()["STEAM_API_KEY"]
 
 
