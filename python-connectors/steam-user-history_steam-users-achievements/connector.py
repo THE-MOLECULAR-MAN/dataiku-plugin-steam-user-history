@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO,
                     format='steam-achievements plugin %(levelname)s - %(message)s')
 
-import  steam[client]
+import steam
 
 """
 A custom Python dataset is a subclass of Connector.
