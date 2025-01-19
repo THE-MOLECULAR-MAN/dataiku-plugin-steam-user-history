@@ -73,10 +73,9 @@ class MyConnector(Connector):
         return {"columns" : [
             {"name": "timestamp",     "type" : "date"}, 
             {"name" :"steam_user_id", "type" : "bigint"},
-            {"name" :"app_id",        "type" : "bigint"},
             {"name" :"game_name",     "type" : "string"},
-            {"name" :"playtime_2weeks_in_minutes",       "type" : "bigint"},
-            {"name" :"playtime_all_time_in_minutes",     "type" : "bigint"},
+            {"name" :"apiname",       "type" : "string"},
+            {"name" :"apiname",       "type" : "string"},
         ]}
 
     def generate_rows(self, dataset_schema=None, dataset_partitioning=None,
