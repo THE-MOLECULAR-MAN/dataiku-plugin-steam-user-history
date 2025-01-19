@@ -17,6 +17,9 @@ logging.basicConfig(level=logging.INFO,
 import steam
 from steam.webapi import WebAPI
 api = WebAPI(key="<your api key>")
+api.ISteamWebAPIUtil.GetServerInfo()
+api.call('ISteamWebAPIUtil.GetServerInfo')
+api.call('ISteamUser.ResolveVanityURL', vanityurl="valve", url_type=2)
 
 
 """
