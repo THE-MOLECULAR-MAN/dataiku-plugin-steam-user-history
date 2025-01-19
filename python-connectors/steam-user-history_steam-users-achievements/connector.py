@@ -44,6 +44,8 @@ class MyConnector(Connector):
 
         # perform some more initialization
         self.theparam1 = self.config.get("parameter1", "defaultValue")
+        self.steam_api_key       = dataiku.get_custom_variables()["STEAM_API_KEY"]
+
 
     def get_read_schema(self):
         """
