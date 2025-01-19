@@ -73,6 +73,7 @@ class MyConnector(Connector):
         return {"columns" : [
             {"name": "timestamp",     "type" : "date"}, 
             {"name" :"steam_user_id", "type" : "bigint"},
+            {"name" :"appid", "type" : "bigint"},
             {"name" :"game_name",     "type" : "string"},
             {"name" :"apiname",       "type" : "string"},
             {"name" :"unlocktime",    "type" : "string"},
